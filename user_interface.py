@@ -1,5 +1,6 @@
+from cans import Can
 import os
-
+from soda_machine import SodaMachine
 
 def simulation_main_menu():
     """Main menu prompting user to choose an option"""
@@ -155,6 +156,6 @@ def validate_coin_selection(selection):
 
 def end_message(soda_name, change_amount):
     """Closing message displaying name of soda purchased and amount of change returned"""
-    print(f'Enjoy your {soda}')
+    print(f'Enjoy your {soda_name}')
     if change_amount >= 0:
         print(f'Dispensing ${change_amount}')

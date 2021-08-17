@@ -3,7 +3,6 @@ class Coin:
         self.value = value
         self.name = name
 
-
 class Dime(Coin):
     def __init__(self):
         super(Dime, self).__init__("Dime", 0.10)

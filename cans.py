@@ -2,6 +2,7 @@ class Can:
     def __init__(self, name, price):
         self.name = name
         self.price = price
+        
 
 
 class Cola(Can):
