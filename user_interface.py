@@ -1,7 +1,6 @@
 import cans
 import coins
 import os
-from customer import Customer
 from wallet import Wallet
 # from soda_machine import SodaMachine
 
