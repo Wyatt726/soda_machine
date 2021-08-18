@@ -1,3 +1,4 @@
+from cans import Can
 from wallet import Wallet  
 from backpack import Backpack
 import user_interface
@@ -7,7 +8,7 @@ class Customer:
     def __init__(self):
         self.wallet = Wallet()
         self.backpack = Backpack()
-
+    
     def gather_coins_from_wallet(self, selected_soda):
         """Method allowing user to choose coins from wallet for payment"""
         will_proceed = False
@@ -29,7 +30,7 @@ class Customer:
     def get_wallet_coin(self, coin_name):
         """Method responsible for retrieving a single coin from wallet's money list"""
         for coin in self.wallet.money:
-            if coin.name == coin.name:
+            if coin_name == coin.name:
                 self.wallet.money.remove(coin)
                 return coin
         return None
@@ -37,7 +38,7 @@ class Customer:
     def add_coins_to_wallet(self, coins_list):
         """Method responsible for adding coins from a list into wallet's money list"""
         for coin in coins_list:
-            self.wallet.money.append(coins_list)
+            self.wallet.money.append(coin)
 
     def add_can_to_backpack(self, dispensed_can):
         """Adds instance of a can into backpack's puchased_cans list. No errors"""
@@ -57,7 +58,8 @@ class Customer:
                 coins_quantity[0] += 1
             elif coin.name == "Penny":
                 coins_quantity[3] -= 1
-        total_value = round(total_value, -2)
+        
+            total_value = round(total_value, 2)
         user_interface.display_customer_wallet_info(coins_quantity, total_value)
 
     def check_backpack(self):

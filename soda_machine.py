@@ -1,6 +1,7 @@
 import user_interface
 import coins
 import cans
+from customer import Customer
 
 
 class SodaMachine:
@@ -37,10 +38,9 @@ class SodaMachine:
             self.run_transaction(customer)
 
     def run_transaction(self, customer):
-        
         selected_soda_name = user_interface.soda_selection(self.inventory)
 
-        selected_soda = self.get_inventory_soda(selected_soda_name)
+        selected_soda_name = self.get_inventory_soda(selected_soda_name)
 
         customer_payment = customer.gather_coins_from_wallet(selected_soda_name)
 
@@ -99,7 +99,7 @@ class SodaMachine:
     def get_coin_from_register(self, coin_name):
         """Removes and returns a coin from register"""
         for coin in self.register:
-            if coin.name == "coin_name":
+            if coin.name == coin_name:
                 self.register.remove(coin)
                 return coin
         return None
@@ -107,7 +107,7 @@ class SodaMachine:
     def register_has_coin(self, coin_name):
         """Searches register for a type of coin, returns True if coin is found"""
         for coin in self.register:
-            if coin.name == "coin_name":
+            if coin.name == coin_name:
                 return True
         return False
 
@@ -117,9 +117,10 @@ class SodaMachine:
 
     def calculate_coin_value(self, coin_list):
         """Takes in a list of coins, returns the monetary value of list."""
+        total_value = 0
         for coin in coin_list:
-            self.total_value += coin.value
-        return round(self.total_value, 2)
+            total_value += coin.value
+        return round(total_value, 2)
 
     def get_inventory_soda(self, selected_soda_name):
         """Returns the first instance of a can whose name matches the selected_soda_name parameter"""
