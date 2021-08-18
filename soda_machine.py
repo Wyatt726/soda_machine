@@ -8,6 +8,7 @@ class SodaMachine:
     def __init__(self):
         self.register = []
         self.inventory = []
+        self.customer = Customer()
         self.fill_inventory()
         self.fill_register()
 
@@ -38,17 +39,21 @@ class SodaMachine:
             self.run_transaction(customer)
 
     def run_transaction(self, customer):
+        
+
         selected_soda_name = user_interface.soda_selection(self.inventory)
 
         selected_soda_name = self.get_inventory_soda(selected_soda_name)
 
-        customer_payment = customer.gather_coins_from_wallet(selected_soda_name)
+        customer_payment = self.customer.gather_coins_from_wallet(selected_soda_name)
 
         self.calculate_transaction(customer_payment, selected_soda_name, customer)
 
         user_interface.output_text("Transaction complete")
 
     def calculate_transaction(self, customer_payment, selected_soda, customer):
+        
+        
         total_payment_value = self.calculate_coin_value(customer_payment)
         if total_payment_value < selected_soda.price:
             change_value = self.determine_change_value(total_payment_value, selected_soda.price)
@@ -125,7 +130,7 @@ class SodaMachine:
     def get_inventory_soda(self, selected_soda_name):
         """Returns the first instance of a can whose name matches the selected_soda_name parameter"""
         for can in self.inventory:
-            if can == selected_soda_name:
+            if can.name == selected_soda_name:
                 self.inventory.remove(can)
                 return can
         return None

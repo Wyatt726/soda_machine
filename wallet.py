@@ -18,4 +18,3 @@ class Wallet:
         for index in range(50):
             self.money.append(coins.Penny())
 
-

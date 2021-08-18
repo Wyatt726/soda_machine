@@ -1,6 +1,7 @@
 import cans
 import coins
 import os
+#from customer import Customer
 from wallet import Wallet
 # from soda_machine import SodaMachine
 
@@ -80,7 +81,8 @@ def soda_selection(inventory):
             i += 1 
         user_selection = try_parse_int(input("Selection:" ))
         validated_user_selection = validate_coin_choice(user_selection, soda_options)
-    return validated_user_selection[1]
+    
+        return validated_user_selection[1]
     
 
 
@@ -116,7 +118,7 @@ def get_unique_can_names(inventory):
 
 def display_can_cost(selected_can):
     """Displays the name of a can and its price"""
-    print(f'The price of a {selected_can.price} is ${selected_can.price}')
+    print(f'The price of a {selected_can.name} is ${selected_can.price}')
 
 
 def display_payment_value(customer_payment):
@@ -124,6 +126,7 @@ def display_payment_value(customer_payment):
     total_payment_value = 0
     for coin in customer_payment:
         total_payment_value += 1
+        #coin += 1
     total_payment_value = round(total_payment_value, 2)
     print(f'You currently have ${total_payment_value} in hand')
 
